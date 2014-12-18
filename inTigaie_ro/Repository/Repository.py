@@ -1,11 +1,12 @@
 __author__ = 'bogdanmursa'
 
+
 class Repository():
 
-    def __init__(object):
+    def __init__(self):
         pass
 
-    def add(self):
+    def add(self, object):
         pass
 
     def update(self):
@@ -18,5 +19,8 @@ class Repository():
         pass
 
     def findOne(self):
+        pass
+
+    def getAll(self):
         pass
 

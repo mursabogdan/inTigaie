@@ -3,7 +3,7 @@ __author__ = 'bogdanmursa'
 from Repository import Repository
 
 
-class InMemoryRepository(Repository):
+class SqlRepository(Repository):
 
     def __init__(self):
         pass
@@ -25,6 +25,4 @@ class InMemoryRepository(Repository):
 
     def getAll(self):
         pass
-
-
 
