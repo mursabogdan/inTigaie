@@ -1,6 +1,5 @@
 __author__ = 'bogdanmursa'
 
-from Models.Ingredient import Ingredient
 from MongoRepository import MongoRepository
 from Utils.ConversionLogic import toJson, toObject
 from Utils import Constants
@@ -24,9 +23,13 @@ class IngredientsMongoRepository(MongoRepository):
     def update(self, value):
         pass
 
-    def delete(self, value):
-        whereClause = {}
-        self.connection.remove({whereClause})
+    def delete(self, whereClause):
+        try:
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            mongoClient.connection.remove(whereClause)
+            return True
+        except Exception:
+            return False
 
     def findOne(self, whereClause):
         try:

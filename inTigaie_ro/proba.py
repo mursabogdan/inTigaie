@@ -12,6 +12,7 @@ ingredient = Ingredient("Cartofi","10","Cei mai smecheri")
 
 repository = IngredientsMongoRepository()
 #repository.add(ingredient)
+#repository.delete({'name':'Cartofi'})
 values = repository.getAll()
 # print values.toString()
 for value in values:
