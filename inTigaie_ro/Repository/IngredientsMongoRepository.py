@@ -15,10 +15,11 @@ class IngredientsMongoRepository(MongoRepository):
 
     def add(self, value):
         try:
-            connection = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
-            connection.insert(toJson(value))
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            mongoClient.connection.insert(toJson(value))
+            return True
         except Exception:
-            pass
+            return False
 
     def update(self, value):
         pass
@@ -31,6 +32,7 @@ class IngredientsMongoRepository(MongoRepository):
         try:
             mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
             return toObject(Constants.INGREDIENT_OBJECT, mongoClient.connection.find_one(whereClause, {'_id': 0}))
+            mongoClient.closeConnection()
         except Exception:
             return []
 
@@ -45,6 +47,11 @@ class IngredientsMongoRepository(MongoRepository):
             return []
 
     def getAll(self):
-        for value in self.connection.find():
-            self.list.append(toObject(value))
-        return self.list
+        try:
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            for value in mongoClient.connection.find({}, {'_id': 0}):
+                self.list.append(toObject(Constants.INGREDIENT_OBJECT, value))
+            return self.list
+            mongoClient.closeConnection()
+        except Exception:
+            return []

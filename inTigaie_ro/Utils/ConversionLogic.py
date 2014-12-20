@@ -8,7 +8,7 @@ from Utils import Constants
 
 
 def toJson(object):
-    return json.dumps(object.__dict__)
+    return json.loads(json.dumps(object.__dict__))
 
 
 def toObject(objectType, json):
