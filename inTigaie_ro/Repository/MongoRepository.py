@@ -3,7 +3,7 @@ __author__ = 'bogdanmursa'
 from Repository import Repository
 
 
-class SqlRepository(Repository):
+class MongoRepository(Repository):
 
     def __init__(self):
         pass
