@@ -2,7 +2,8 @@ __author__ = 'bogdanmursa'
 
 from Models.Ingredient import Ingredient
 from MongoRepository import MongoRepository
-from Utils.ConversionLogic import toJson
+from Utils.ConversionLogic import toJson, toObject
+
 
 class IngredientsMongoRepository(MongoRepository):
 
@@ -17,17 +18,20 @@ class IngredientsMongoRepository(MongoRepository):
         pass
 
     def delete(self, value):
-        self.list.pop(value)
+        whereClause = ""
+        self.connection.remove({whereClause})
 
     def findOne(self, values):
-        return Ingredient(**self.connection.find_one({}, {'_id': 0}))
+        whereClause = ""
+        return Ingredient(**self.connection.find_one({whereClause}, {'_id': 0}))
 
     def findAll(self, value):
-        for value in self.connection.find():
-            self.list.append(Ingredient(**value))
+        whereClause = ""
+        for value in self.connection.find({whereClause}):
+            self.list.append(toObject(value))
         return self.list
 
     def getAll(self):
         for value in self.connection.find():
-            self.list.append(Ingredient(**value))
+            self.list.append(toObject(value))
         return self.list
