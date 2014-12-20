@@ -3,33 +3,46 @@ __author__ = 'bogdanmursa'
 from Models.Ingredient import Ingredient
 from MongoRepository import MongoRepository
 from Utils.ConversionLogic import toJson, toObject
+from Utils import Constants
+from Utils.MongoConnectionManager import MongoConnectionManager
+
 
 
 class IngredientsMongoRepository(MongoRepository):
 
-    def __init__(self, connection):
+    def __init__(self):
         self.list = []
-        self.connection = connection
 
     def add(self, value):
-        self.connection.insert(toJson(value))
+        try:
+            connection = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            connection.insert(toJson(value))
+        except Exception:
+            pass
 
     def update(self, value):
         pass
 
     def delete(self, value):
-        whereClause = ""
+        whereClause = {}
         self.connection.remove({whereClause})
 
-    def findOne(self, values):
-        whereClause = ""
-        return Ingredient(**self.connection.find_one({whereClause}, {'_id': 0}))
+    def findOne(self, whereClause):
+        try:
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            return toObject(Constants.INGREDIENT_OBJECT, mongoClient.connection.find_one(whereClause, {'_id': 0}))
+        except Exception:
+            return []
 
-    def findAll(self, value):
-        whereClause = ""
-        for value in self.connection.find({whereClause}):
-            self.list.append(toObject(value))
-        return self.list
+    def findAll(self, whereClause):
+        try:
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            for value in mongoClient.connection.find(whereClause, {'_id': 0}):
+                self.list.append(toObject(Constants.INGREDIENT_OBJECT, value))
+            return self.list
+            mongoClient.closeConnection()
+        except Exception:
+            return []
 
     def getAll(self):
         for value in self.connection.find():

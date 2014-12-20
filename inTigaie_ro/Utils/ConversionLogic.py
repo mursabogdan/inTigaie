@@ -2,7 +2,8 @@ __author__ = 'bogdanmursa'
 
 
 import json
-from Models import Ingredient, Recipe
+from Models.Ingredient import Ingredient
+from Models.Recipe import Recipe
 from Utils import Constants
 
 

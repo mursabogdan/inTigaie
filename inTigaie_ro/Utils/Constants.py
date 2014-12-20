@@ -5,3 +5,8 @@ __author__ = 'bogdanmursa'
 INGREDIENT_OBJECT = 'Ingredient'
 RECIPE_OBJECT = 'Recipe'
 
+############# DB AND COLLECTION ################
+
+DB = 'test'
+
+INGREDIENT_COLLECTION = 'ingredients'
