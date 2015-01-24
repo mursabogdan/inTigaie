@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<b>HELLO WORLD</b>
+<br><br>
+<div id="Ingredients">
+    {% for ingredient in ingredientList %}
+        <div class="box">
+            <b><i>Name: </b></i>{{ ingredient.getName }}<br>
+            <i>Price: </i> {{ ingredient.getPrice }}<br>
+            <i>Description: </i> {{ ingredient.getDescription }}<br>
+            <br><br>
+        </div>
+    {% endfor %}
+    <form action="/ingredients/"  method="get" >
+        <input type="text" name = "name">
+        <input type="submit"value="Search"/>
+    </form>
+</div>
+</body>
+</html>
