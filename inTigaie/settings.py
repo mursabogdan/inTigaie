@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'inTigaie_ro',
 )
 
@@ -47,13 +48,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'inTigaie.urls'
 
 WSGI_APPLICATION = 'inTigaie.wsgi.application'
 
-
+APPEND_SLASH = True
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 

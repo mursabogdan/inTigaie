@@ -10,6 +10,8 @@ from Utils import Constants
 def toJson(object):
     return json.loads(json.dumps(object.__dict__))
 
+def listToJson(listOfObjects):
+    return json.dumps([ob.__dict__ for ob in listOfObjects])
 
 def toObject(objectType, json):
     if objectType == Constants.INGREDIENT_OBJECT:

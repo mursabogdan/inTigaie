@@ -1,58 +1,19 @@
-from Utils import Constants
-from Utils.MongoConnectionManager import MongoConnectionManager
+from Models.Ingredient import Ingredient
+from Models.Recipe import Recipe
+from Repository.RecipesMongoRepository import RecipesMongoRepository
 
 __author__ = 'bogdanmursa'
 
-from pymongo import Connection
-from Models.Ingredient import Ingredient
-import json
-from Repository.IngredientsMongoRepository import IngredientsMongoRepository
 
-ingredient = Ingredient("Cartofi","10","Cei mai smecheri")
+repository = RecipesMongoRepository();
 
-repository = IngredientsMongoRepository()
-#repository.add(ingredient)
-#repository.delete({'name':'Cartofi'})
-values = repository.getAll()
-# print values.toString()
-for value in values:
-    print value.toString()
+mazare = Ingredient("Mazare", 123, "La cutie")
+cartofi = Ingredient("Cartofi", 10, "La kilogram")
+patrunjel = Ingredient("Patrunjel", 1, "La legatura")
+ulei = Ingredient("Ulei", 5, "La sticla")
 
-#
-# database_name = 'test'
-# collection = 'ingredients'
-# connection = Connection()
-#
-# collection = Connection()[database_name][collection]
-# ########################################################################
-# ingredient = Ingredient("Piper","123","E iute")
-# #######################################################################
-# def toJson(object):
-#     return json.dumps(object.__dict__)
-#
-# ingredient_to_json = toJson(ingredient)
-# ########################################################################
-#
-#
-# whereClause = {'name':'Piper'}
-#
-# def toObject(objectType, json):
-#     if objectType == "Ingredient":
-#         return Ingredient(**json)
-#     elif objectType == "Recipe":
-#         return json
-#
-#
-# print toObject('Ingredient', collection.find_one(whereClause, {'_id': 0})).toString()
-#
-#
-#
-#
-# #collection.insert({"name":"Adelina"})
-# list = []
-#
-# #for e in collection.find({}, {'_id':0}):
-#  #   list.append(toObject("Ingredient", e))
-#
-# #for i in list:
-#  #   print i.toString()
+recipe = Recipe("Salata de legume", "Se gateste foarte usor, se ia mazarea se amesteca cu cartofii fierti si se pune patrunjel dupa cu ulei", [mazare, cartofi, patrunjel, ulei])
+
+
+
+print recipe

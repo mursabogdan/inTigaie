@@ -1,12 +1,15 @@
+import Utils.ConversionLogic
 __author__ = 'bogdanmursa'
 
 
 class Recipe():
 
     def __init__(self, name, description, ingredients):
+        self.ingredients = []
         self.name = name
         self.description = description
-        self.ingredients = ingredients
+        for ingredient in ingredients:
+            self.ingredients.append(Utils.ConversionLogic.toObject(Utils.ConversionLogic.Constants.INGREDIENT_OBJECT, ingredient))
 
     def getName(self):
         return self.name
@@ -27,4 +30,4 @@ class Recipe():
         self.ingredients = ingredients
 
     def toString(self):
-        return self.name + "," + self.description + "," + self.ingredients
+        return self.name + "," + self.description + "," + str(self.ingredients)

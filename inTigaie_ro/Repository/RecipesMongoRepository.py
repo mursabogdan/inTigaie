@@ -6,7 +6,7 @@ from Utils import Constants
 from Utils.MongoConnectionManager import MongoConnectionManager
 
 
-class IngredientsMongoRepository(MongoRepository):
+class RecipesMongoRepository(MongoRepository):
 
     def __init__(self):
         self.list = []
@@ -50,9 +50,9 @@ class IngredientsMongoRepository(MongoRepository):
 
     def getAll(self):
         try:
-            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.RECIPES_COLLECTION)
             for value in mongoClient.connection.find({}, {'_id': 0}):
-                self.list.append(toObject(Constants.INGREDIENT_OBJECT, value))
+                self.list.append(toObject(Constants.RECIPE_OBJECT, value))
             return self.list
             mongoClient.closeConnection()
         except Exception:

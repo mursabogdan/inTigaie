@@ -10,3 +10,5 @@ RECIPE_OBJECT = 'Recipe'
 DB = 'test'
 
 INGREDIENT_COLLECTION = 'ingredients'
+RECIPES_COLLECTION = 'recipes'
+

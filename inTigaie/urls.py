@@ -6,5 +6,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'inTigaie.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'inTigaie_ro.Controller.mainPageController.toMap', name='MainMenu'),
+    url(r'^ingredients', 'inTigaie_ro.Controller.IngredientsController.toMap', name='Ingredients'),
+    url(r'^recipes', 'inTigaie_ro.Controller.RecipesController.toMap',  name='Recipes'),
 )

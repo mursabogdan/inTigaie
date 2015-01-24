@@ -3,7 +3,7 @@ __author__ = 'bogdanmursa'
 
 class Ingredient():
 
-    def __init__(self, name, price, description):
+    def __init__(self, name=" ", price=" ", description=" "):
         self.name = name
         self.price = price
         self.description = description
@@ -27,4 +27,4 @@ class Ingredient():
         self.description = description
 
     def toString(self):
-        return self.name + "," + self.price + "," + self.description
+        return self.name + "," + str(self.price) + "," + self.description
