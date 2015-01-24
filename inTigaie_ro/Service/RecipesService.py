@@ -24,8 +24,14 @@ class RecipesService():
         sortedList = sorted(listOfRecipes, key=lambda recipe: recipe.getName())
         return sortedList
 
-    def getRecipeByIngredients(self, listOfIngredients):
-        listOfRecipes = self.repository.findAll(listOfIngredients)
+    def getRecipeByIngredients(self, ingredients):
+        listOfClauses = []
+        listOfIngredients = ingredients.split(', ')
+        for ingredient in listOfIngredients:
+            listOfClauses.append({'ingredients.name': ingredient})
+        whereClause = ({"$and": listOfClauses})
+        print whereClause
+        listOfRecipes = self.repository.findAll(whereClause)
         return listOfRecipes
 
 

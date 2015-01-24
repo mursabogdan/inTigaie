@@ -6,7 +6,7 @@ from Service.IngredientsService import IngredientsService
 def toMap(request):
     ingredientsService = IngredientsService()
     message = 'Your Result'
-    if request.GET.get('name') != '':
+    if request.GET.get('name'):
         name = request.GET.get('name')
         whereClause = {'name': name}
         listOfIngredients = ingredientsService.getIngredientsByName(whereClause)
