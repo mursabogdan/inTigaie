@@ -9,10 +9,10 @@ def toMap(request):
     recipesService = RecipesService();
     message = 'Your Result'
 
-    if request.GET.get('name') != '':
-        name = request.GET.get('name')
-        whereClause = {'name': name}
-        recipesList = recipesService.getRecipesByName(whereClause)
+    if request.GET.get('ingredients') != '':
+        ingredients = request.GET.get('ingredients')
+        whereClause = {'ingredients.name': ingredients}
+        recipesList = recipesService.getRecipeByIngredients(whereClause)
         c = RequestContext(request, {'recipesList': recipesList, 'response':message})
         return render_to_response('recipes.html', c)
     recipesList = recipesService.getAllRecipes()

@@ -24,7 +24,7 @@ class RecipesMongoRepository(MongoRepository):
 
     def delete(self, whereClause):
         try:
-            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.RECIPES_COLLECTION)
             mongoClient.connection.remove(whereClause)
             return True
         except Exception:
@@ -32,17 +32,17 @@ class RecipesMongoRepository(MongoRepository):
 
     def findOne(self, whereClause):
         try:
-            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
-            return toObject(Constants.INGREDIENT_OBJECT, mongoClient.connection.find_one(whereClause, {'_id': 0}))
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.RECIPES_COLLECTION)
+            return toObject(Constants.RECIPE_OBJECT, mongoClient.connection.find_one(whereClause, {'_id': 0}))
             mongoClient.closeConnection()
         except Exception:
             return []
 
     def findAll(self, whereClause):
         try:
-            mongoClient = MongoConnectionManager(Constants.DB, Constants.INGREDIENT_COLLECTION)
+            mongoClient = MongoConnectionManager(Constants.DB, Constants.RECIPES_COLLECTION)
             for value in mongoClient.connection.find(whereClause, {'_id': 0}):
-                self.list.append(toObject(Constants.INGREDIENT_OBJECT, value))
+                self.list.append(toObject(Constants.RECIPE_OBJECT, value))
             return self.list
             mongoClient.closeConnection()
         except Exception:

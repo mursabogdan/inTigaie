@@ -24,4 +24,8 @@ class RecipesService():
         sortedList = sorted(listOfRecipes, key=lambda recipe: recipe.getName())
         return sortedList
 
+    def getRecipeByIngredients(self, listOfIngredients):
+        listOfRecipes = self.repository.findAll(listOfIngredients)
+        return listOfRecipes
+
 
