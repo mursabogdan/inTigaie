@@ -8,17 +8,21 @@
     <script src="{% static 'js/main_menu.js' %}"></script>
 </head>
 <body style="background:#6699FF">
-<div align="center"><h1>MAIN MENU</h1></div>
-<div id="leftBox" ondrop="drop(event)" ondragover="allowDrop(event)">Here</div>
-<div id="rightBox">
-    <img id="logo" src="{% static 'img/inTigaie.png' %}" ondblclick="restoreDefaults()" draggable="true" ondragstart="drag(event)">
-</div>
     <form action="/ingredients">
         <input type="submit"value="To Ingredients"/>
     </form>
-    <form action="/recipes">
+    <form action="/recipes" align="left">
         <input type="submit"value="To Recipes"/>
     </form>
-    <button onclick="myFunction()">Click me</button>
+<div align="center"><h1>MAIN MENU</h1></div>
+<div id="leftBox">
+    <img id="red_cabbage" class="ingredients" src="{% static 'img/red_cabbage.png' %}" draggable="true" ondragstart="drag(event)">
+    <img id="carrot" class="ingredients" src="{% static 'img/carrot.png' %}" draggable="true" ondragstart="drag(event)">
+</div>
+<div id="rightBox" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img id="logo" src="{% static 'img/in_tigaie.png' %}" draggable="false">
+</div>
+<p align="right">Ingredients:</p>
+<div id="ingredientsPanel"></div>
 </body>
 </html>
