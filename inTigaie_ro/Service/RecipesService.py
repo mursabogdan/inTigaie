@@ -1,4 +1,5 @@
 from Repository.RecipesMongoRepository import RecipesMongoRepository
+from Utils import Constants
 
 __author__ = 'bogdanmursa'
 
@@ -8,8 +9,9 @@ class RecipesService():
     def __init__(self):
         self.repository = RecipesMongoRepository()
 
-    def getRecipesByName(self, name):
-        listOfRecipes = self.repository.findAll(name)
+    def getRecipesByName(self, names):
+        listOfNames = names.split(', ')
+        listOfRecipes = self.repository.findAll(listOfNames, Constants.SEARCH_BY_NAME)
         return listOfRecipes
 
     def getAllRecipes(self):
@@ -25,13 +27,8 @@ class RecipesService():
         return sortedList
 
     def getRecipeByIngredients(self, ingredients):
-        listOfClauses = []
         listOfIngredients = ingredients.split(', ')
-        for ingredient in listOfIngredients:
-            listOfClauses.append({'ingredients.name': ingredient})
-        whereClause = ({"$and": listOfClauses})
-        print whereClause
-        listOfRecipes = self.repository.findAll(whereClause)
+        listOfRecipes = self.repository.findAll(listOfIngredients, Constants.SEARCH_BY_INGREDIENTS)
         return listOfRecipes
 
 

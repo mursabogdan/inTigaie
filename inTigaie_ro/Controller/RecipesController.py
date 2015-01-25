@@ -14,6 +14,11 @@ def toMap(request):
         recipesList = recipesService.getRecipeByIngredients(ingredients)
         c = RequestContext(request, {'recipesList': recipesList, 'response':message})
         return render_to_response('recipes.html', c)
+    if request.GET.get('name'):
+        name = request.GET.get('name')
+        recipesList = recipesService.getRecipesByName(name)
+        c = RequestContext(request, {'recipesList': recipesList, 'response':message})
+        return render_to_response('recipes.html', c)
     recipesList = recipesService.getAllRecipes()
 
     c = RequestContext(request, {'recipesList': recipesList})

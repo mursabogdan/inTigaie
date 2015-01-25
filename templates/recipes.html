@@ -7,6 +7,17 @@
 <body>
 <b>HELLO WORLD</b>
 <br><br>
+    <form action="/recipes"  method="get" >
+        Insert your madafaka ingredients
+        <input type="text" name = "ingredients">
+        <input type="submit"value="Search"/>
+    </form>
+    <form action="/recipes"  method="get" >
+        Insert your madafaka recipe name
+        <input type="text" name = "name">
+        <input type="submit"value="Search"/>
+    </form>
+<br><br>
 <div id="Ingredients">
     {% for recipe in recipesList %}
         <div class="box">
@@ -22,11 +33,6 @@
             {% endfor %}
         </div>
     {% endfor %}
-    <form action="/recipes/"  method="get" >
-        Insert your madafaka ingredients
-        <input type="text" name = "ingredients">
-        <input type="submit"value="Search"/>
-    </form>
 </div>
 </body>
 </html>

@@ -38,8 +38,13 @@ class RecipesMongoRepository(MongoRepository):
         except Exception:
             return []
 
-    def findAll(self, whereClause):
+    def findAll(self, ingredients, findPurpose):
         try:
+            listOfClauses = []
+            for ingredient in ingredients:
+                listOfClauses.append({findPurpose: ingredient})
+            whereClause = ({"$and": listOfClauses})
+            print whereClause
             mongoClient = MongoConnectionManager(Constants.DB, Constants.RECIPES_COLLECTION)
             for value in mongoClient.connection.find(whereClause, {'_id': 0}):
                 self.list.append(toObject(Constants.RECIPE_OBJECT, value))
