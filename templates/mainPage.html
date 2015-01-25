@@ -4,13 +4,15 @@
 
 <html>
 <head lang="en">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/mainMenu.css' %}">
-    <script src="{% static 'js/mainMenu.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main_menu.css' %}">
+    <script src="{% static 'js/main_menu.js' %}"></script>
 </head>
 <body style="background:#6699FF">
 <div align="center"><h1>MAIN MENU</h1></div>
-<section id="leftBox">Here</section>
-<section id="rightBox"> <img id="logo" src="{% static 'img/inTigaie.png' %}" ondblclick="restoreDefaults()"> </section>
+<div id="leftBox" ondrop="drop(event)" ondragover="allowDrop(event)">Here</div>
+<div id="rightBox">
+    <img id="logo" src="{% static 'img/inTigaie.png' %}" ondblclick="restoreDefaults()" draggable="true" ondragstart="drag(event)">
+</div>
     <form action="/ingredients">
         <input type="submit"value="To Ingredients"/>
     </form>
