@@ -17,11 +17,16 @@
 <div align="center"><h1>MAIN MENU</h1></div>
     <p align="left">Ingredients( drag the ingredient to pan ) : </p>
 <div id="leftBox">
-    <img id="red_cabbage" class="ingredients" src="{% static 'img/red_cabbage.png' %}" draggable="true" ondragstart="drag(event)">
-    <img id="carrot" class="ingredients" src="{% static 'img/carrot.png' %}" draggable="true" ondragstart="drag(event)">
+    <img id="Cartofi" class="ingredients" src="{% static 'img/red_cabbage.png' %}" draggable="true" ondragstart="drag(event)">
+    <img id="Morcov" class="ingredients" src="{% static 'img/carrot.png' %}" draggable="true" ondragstart="drag(event)">
 </div>
 <div id="rightBox" ondrop="drop(event)" ondragover="allowDrop(event)">
     <img id="logo" src="{% static 'img/in_tigaie.png' %}" draggable="false">
+    <br><br>
+    <form action="/recipes"  method="get" onsubmit="return isValidForm()">
+        <input type="text" id="ingredientsForSearch" name = "ingredients" align="right">
+        <input type="submit" id="submitButton" value="Search" align="right"/>
+    </form>
 </div>
 <p align="right">Ingredients( double click on ingredient to make him go back ) :</p>
 <div id="ingredientsPanel"></div>

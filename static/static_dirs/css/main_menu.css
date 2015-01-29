@@ -4,6 +4,16 @@
     height: 250px;
     width: 250px;
 }
+
+#recipes{
+    float: left;
+    position: absolute;
+    top: 40%;
+    margin: 10px;
+    height: 250px;
+    width: 250px;
+}
+
 #rightBox{
     position: fixed;
     top: 50%;
@@ -12,6 +22,11 @@
     height: 100px;
     margin-top: -50px; /*set to a negative number 1/2 of your height*/
     margin-left: -50px; /*set to a negative number 1/2 of your width*/
+}
+#submitButton{
+    position: relative;
+    right: -25px;
+
 }
 #ingredientsPanel{
     float: right;

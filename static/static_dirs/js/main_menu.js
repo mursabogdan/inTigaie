@@ -27,6 +27,12 @@ function drop(ev) {
     img.setAttribute("draggable", "false");
     img.setAttribute("ondblclick", "restoreDefaults('"+ data +"')")
     document.getElementById('ingredientsPanel').appendChild(img);
+    var ingredientsForSearch = document.getElementById("ingredientsForSearch");
+    if ( ingredientsForSearch.value == '' ){
+        ingredientsForSearch.value = data;
+    } else {
+        ingredientsForSearch.value = ingredientsForSearch.value + ',' + data;
+    }
 }
 
 function restoreDefaults(id) {
@@ -41,6 +47,8 @@ function restoreDefaults(id) {
     img.setAttribute("width", "70");
     img.setAttribute("width", "70");
 
+    var ingredientForSearch = document.getElementById("ingredientsForSearch");
+    ingredientForSearch.value = ingredientForSearch.value.replace(new RegExp(",*"+id, "g"), "");
     var elements = document.getElementById("ingredientsPanel").getElementsByClassName("ingredientsPanel");
     var panel = document.getElementById("ingredientsPanel");
     for(var i=0; i<elements.length; i++) {
@@ -50,4 +58,12 @@ function restoreDefaults(id) {
     }
 
     document.getElementById('leftBox').appendChild(img);
+}
+
+function isValidForm(){
+    var ingredientsForSearch = document.getElementById("ingredientsForSearch");
+    if (ingredientsForSearch.value == '' ){
+        alert("please insert stuff");
+        return false;
+    }
 }

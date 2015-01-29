@@ -10,7 +10,7 @@ class RecipesService():
         self.repository = RecipesMongoRepository()
 
     def getRecipesByName(self, names):
-        listOfNames = names.split(', ')
+        listOfNames = names.split(',')
         listOfRecipes = self.repository.findAll(listOfNames, Constants.SEARCH_BY_NAME)
         return listOfRecipes
 
@@ -27,7 +27,7 @@ class RecipesService():
         return sortedList
 
     def getRecipeByIngredients(self, ingredients):
-        listOfIngredients = ingredients.split(', ')
+        listOfIngredients = ingredients.split(',')
         listOfRecipes = self.repository.findAll(listOfIngredients, Constants.SEARCH_BY_INGREDIENTS)
         return listOfRecipes
 
